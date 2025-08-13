@@ -36,6 +36,15 @@
     a:hover {
         text-decoration: underline;
     }
+
+    /* Matrix-themed LinkedIn badge override */
+    .LI-profile-badge {
+        filter: grayscale(100%) brightness(1.2) sepia(100%) hue-rotate(90deg) saturate(500%);
+        border: 2px solid #00ff88;
+        border-radius: 10px;
+        padding: 5px;
+        background: rgba(0, 0, 0, 0.6);
+    }
 </style>
 </head>
 <body>
@@ -82,7 +91,7 @@
     setInterval(draw, 35);
 </script>
 
-<!-- LinkedIn badge -->
+<!-- Matrix-themed LinkedIn badge -->
 <div style="display:flex;justify-content:center;margin-top:40px;z-index:2;position:relative;">
   <div class="badge-base LI-profile-badge"
        data-locale="en_US"
