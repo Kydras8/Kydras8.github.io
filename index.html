@@ -1,49 +1,230 @@
-<!DOCTYPE html>
+k<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kydras8 - Red Team Operator | Cybersecurity Projects & Tools">
-  <title>Kydras8 - Hacker Portfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kydras8 — Red Team Operator • Kydras Systems Inc.</title>
+  <meta name="description" content="Mr. K (Kydras8) — red team operator building accessible cybersecurity tools at Kydras Systems Inc. Projects, store links, and contact." />
+  <meta property="og:title" content="Kydras8 — Red Team Operator" />
+  <meta property="og:description" content="Cybersecurity tools, open‑source projects, and ways to support Kydras Systems Inc." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/images/og-card.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="assets/images/kydras-logo.png" />
+
   <style>
-    html, body {margin: 0; height: 100%; background: #0d0d0d; color: #00ff88; font-family: monospace; overflow: hidden;}
-    canvas {position: absolute; top: 0; left: 0; z-index: 0;}
-    .content {position: absolute; z-index: 1; top: 10%; width: 100%; text-align: center;}
-    h1 {font-size: 48px; margin-bottom: 10px;}
-    nav a {color: #00ffff; margin: 0 10px; font-size: 18px; text-decoration: none;}
-    nav a:hover {text-decoration: underline;}
-    .projects {margin-top: 30px;}
-    .projects a {display: inline-block; margin: 10px; color: #ffcc00;}
-    .footer {margin-top: 40px; font-size: 14px; color: #aaa;}
+    :root{
+      --bg:#0b0f0e; --fg:#b9ffe5; --neon:#00ff88; --link:#00e5ff; --muted:#88d6bd;
+      --card:rgba(0,0,0,.55); --border:rgba(0,255,136,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;background:var(--bg);color:var(--fg)}
+    a{color:var(--link);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* Matrix canvas backdrop */
+    #matrix{position:fixed;inset:0;z-index:0}
+    .scrim{position:fixed;inset:0;background:radial-gradient(1200px 600px at 50% 0%, rgba(0,0,0,.0), rgba(0,0,0,.8));z-index:1;pointer-events:none}
+
+    /* Layout */
+    .wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:20px}
+
+    /* Sticky nav with glass look */
+    .nav{position:sticky;top:0;z-index:3;border-bottom:1px solid var(--border);background:rgba(0,0,0,.45);backdrop-filter:saturate(120%) blur(6px)}
+    .nav-inner{display:flex;align-items:center;gap:14px;padding:10px 16px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.4px}
+    .brand img{width:26px;height:26px;border-radius:6px;filter:drop-shadow(0 0 10px rgba(0,255,136,.5))}
+    .spacer{flex:1}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:12px;border:1px solid var(--border);background:var(--card);color:var(--fg);box-shadow:0 0 0 0 rgba(0,255,136,.35);transition:transform .15s ease, box-shadow .2s ease}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 0 18px 0 rgba(0,255,136,.25)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr;gap:14px;padding:48px 0 16px}
+    .hero h1{margin:0;font-size:42px;line-height:1.05;text-shadow:0 0 18px rgba(0,255,136,.25)}
+    .hero p{margin:6px 0 16px;color:var(--muted)}
+    .cta{display:flex;flex-wrap:wrap;gap:10px}
+
+    /* Sections */
+    section{margin:34px 0}
+    .section-title{font-size:22px;margin:0 0 10px;text-shadow:0 0 12px rgba(0,255,136,.15)}
+
+    /* Cards */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+    .card{border:1px solid var(--border);background:var(--card);border-radius:16px;padding:16px}
+    .card h3{margin:0 0 6px;font-size:18px}
+    .card p{margin:0 0 10px;color:var(--muted)}
+
+    /* Footer */
+    footer{margin:40px 0 16px;color:#8fd7b9;font-size:14px;text-align:center}
+    .footer-links{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:8px}
+
+    /* LinkedIn badge skin (Matrix tint) */
+    .LI-profile-badge{filter:grayscale(100%) brightness(1.2) sepia(100%) hue-rotate(90deg) saturate(450%);border:1px solid var(--border);border-radius:14px;padding:6px;background:rgba(0,0,0,.45)}
+
+    @media (min-width:900px){.hero{grid-template-columns:1.1fr .9fr;align-items:center}}
   </style>
 </head>
 <body>
-<canvas id="matrix"></canvas>
-<div class="content">
-  <h1>Mr. K — Red Team Operator</h1>
-  <p>OSCP+ Student | Grey Hat | Kydras Offensive Suite Developer</p>
-  <nav>
-    <a href="https://github.com/Kydras8/Kydras-OSINT">OSINT Toolkit</a>
-    <a href="https://github.com/Kydras8/Kydras-Playbooks">Playbooks</a>
-    <a href="https://github.com/Kydras8/Kydras-Lite">Lite Toolkit</a>
-    <a href="https://github.com/Kydras8/Kydras-Payloads">Payload Arsenal</a>
-    <a href="https://kydras.gumroad.com/l/kvqzm">Kydras eBook Studio Pro</a>
-    <a href="https://kydras.gumroad.com/l/emutbc">Kydras Lite</a>
-    <a href="https://kydras.gumroad.com/l/dlbzn">Kydras Free</a>
-    <a href="https://buymeacoffee.com/Kydras">☕ Support</a>
-  </nav>
-  <div class="projects">
-    <img src="assets/images/qr-code.png" alt="QR Code" width="120">
+  <canvas id="matrix"></canvas>
+  <div class="scrim" aria-hidden="true"></div>
+
+  <!-- Top nav -->
+  <div class="nav">
+    <div class="nav-inner wrap">
+      <div class="brand">
+        <img src="assets/images/kydras-logo.png" alt="Kydras logo">
+        <span>Kydras Systems Inc.</span>
+      </div>
+      <div class="spacer"></div>
+      <a class="btn" href="https://bit.ly/KydrasSystems" target="_blank" rel="noopener">GoFundMe</a>
+      <a class="btn" href="https://kydras.gumroad.com/" target="_blank" rel="noopener">Gumroad</a>
+      <a class="btn" href="https://buymeacoffee.com/Kydras" target="_blank" rel="noopener">Buy Me a Coffee</a>
+      <a class="btn" href="https://github.com/Kydras8" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/kyle-rasmussen-950065301" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
   </div>
-  <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="kyle-rasmussen-950065301" data-version="v1">
-    <a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/kyle-rasmussen-950065301?trk=profile-badge">Kyle Rasmussen</a>
-  </div>
-  <div class="footer">© 2025 Kydras Systems Inc.</div>
-</div>
-<script>
-  var c=document.getElementById("matrix"),ctx=c.getContext("2d");c.height=window.innerHeight;c.width=window.innerWidth;var letters="01".split(""),fontSize=14,columns=c.width/fontSize,drops=[];for(var x=0;x<columns;x++)drops[x]=1;function draw(){ctx.fillStyle="rgba(0,0,0,0.05)";ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle="#00ff88";ctx.font=fontSize+"px monospace";for(var i=0;i<drops.length;i++){var text=letters[Math.floor(Math.random()*letters.length)];ctx.fillText(text,i*fontSize,drops[i]*fontSize);if(drops[i]*fontSize>c.height&&Math.random()>0.975)drops[i]=0;drops[i]++;}}setInterval(draw,35);
-</script>
-<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://bit.ly/KydrasSystems" style="display:none;" alt="QR Analytics Ping">
+
+  <main class="wrap">
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div>
+        <h1>Mr. K — Red Team Operator</h1>
+        <p>OSCP+ student • Grey Hat • Kydras Offensive Suite developer. Building accessible cybersecurity tools at <strong>Kydras Systems Inc.</strong></p>
+        <div class="cta">
+          <a class="btn" href="https://bit.ly/KydrasSystems" target="_blank" rel="noopener">Support the Launch</a>
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn" href="#store">Visit Store</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Quick Links</h3>
+        <ul style="list-style:none;padding:0;margin:0;display:grid;gap:8px">
+          <li><a href="https://github.com/Kydras8/Kydras-OSINT" target="_blank" rel="noopener">OSINT Toolkit</a></li>
+          <li><a href="https://github.com/Kydras8/Kydras-Playbooks" target="_blank" rel="noopener">Playbooks</a></li>
+          <li><a href="https://github.com/Kydras8/Kydras-Lite" target="_blank" rel="noopener">Kydras Lite (repo)</a></li>
+          <li><a href="https://github.com/Kydras8/Kydras-Payloads" target="_blank" rel="noopener">Payload Arsenal</a></li>
+          <li><a href="https://github.com/Kydras8/Kydras-eBook-Studio" target="_blank" rel="noopener">eBook Studio (repo)</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Kydras OSINT</h3>
+          <p>Open-source toolkit for ethical investigations & footprinting.</p>
+          <a href="https://github.com/Kydras8/Kydras-OSINT" target="_blank" rel="noopener">View Repo →</a>
+        </div>
+        <div class="card">
+          <h3>Kydras Playbooks</h3>
+          <p>Repeatable runbooks for recon, exploitation, and reporting.</p>
+          <a href="https://github.com/Kydras8/Kydras-Playbooks" target="_blank" rel="noopener">View Repo →</a>
+        </div>
+        <div class="card">
+          <h3>Kydras Lite</h3>
+          <p>Streamlined offensive toolkit focused on speed & portability.</p>
+          <a href="https://github.com/Kydras8/Kydras-Lite" target="_blank" rel="noopener">View Repo →</a>
+        </div>
+        <div class="card">
+          <h3>Payload Arsenal</h3>
+          <p>Curated payload sets for testing controls and detections.</p>
+          <a href="https://github.com/Kydras8/Kydras-Payloads" target="_blank" rel="noopener">View Repo →</a>
+        </div>
+        <div class="card">
+          <h3>eBook Studio</h3>
+          <p>Cross‑platform eBook builder with batch conversion & templates.</p>
+          <a href="https://github.com/Kydras8/Kydras-eBook-Studio" target="_blank" rel="noopener">View Repo →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Store / Gumroad -->
+    <section id="store">
+      <h2 class="section-title">Store</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Kydras Offensive Suite Pro</h3>
+          <p>Full toolkit bundle with advanced modules.</p>
+          <a href="https://kydras.gumroad.com/l/kvqzm" target="_blank" rel="noopener">Open on Gumroad →</a>
+        </div>
+        <div class="card">
+          <h3>Kydras Lite</h3>
+          <p>Lightweight edition for quick ops and portable setups.</p>
+          <a href="https://kydras.gumroad.com/l/emutbc" target="_blank" rel="noopener">Open on Gumroad →</a>
+        </div>
+        <div class="card">
+          <h3>Kydras eBook Studio Pro</h3>
+          <p>eBook builder with templates, batch tools, and export.</p>
+          <a href="https://kydras.gumroad.com/l/dlbzn" target="_blank" rel="noopener">Open on Gumroad →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Connect -->
+    <section id="connect">
+      <h2 class="section-title">Connect</h2>
+      <p>Email: <a href="mailto:8bitlate@gmail.com">8bitlate@gmail.com</a></p>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:center;margin-top:14px">
+        <!-- QR to GoFundMe -->
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=128x128&data=https://bit.ly/KydrasSystems" alt="QR to GoFundMe" width="128" height="128" style="border-radius:12px;border:1px solid var(--border);background:rgba(0,0,0,.4);padding:6px" />
+        <!-- LinkedIn badge -->
+        <div class="badge-base LI-profile-badge"
+             data-locale="en_US" data-size="medium" data-theme="dark"
+             data-type="VERTICAL" data-vanity="kyle-rasmussen-950065301" data-version="v1">
+          <a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/kyle-rasmussen-950065301?trk=profile-badge">Kyle Rasmussen</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="y"></span> Kydras Systems Inc.</div>
+      <div class="footer-links">
+        <a href="https://bit.ly/KydrasSystems" target="_blank" rel="noopener">GoFundMe</a>
+        <a href="https://kydras.gumroad.com/" target="_blank" rel="noopener">Gumroad</a>
+        <a href="https://buymeacoffee.com/Kydras" target="_blank" rel="noopener">Buy Me a Coffee</a>
+        <a href="https://github.com/Kydras8" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/kyle-rasmussen-950065301" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </footer>
+  </main>
+
+  <!-- LinkedIn badge script (must appear once per page) -->
+  <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+
+  <!-- Matrix rain background (rAF + resize-aware) -->
+  <script>
+    (function(){
+      const canvas = document.getElementById('matrix');
+      const ctx = canvas.getContext('2d');
+      const letters = '01'.split('');
+      let fontSize = 16; let columns = 0; let drops = [];
+
+      function resize(){
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        columns = Math.floor(canvas.width / fontSize);
+        drops = Array(columns).fill(1);
+      }
+      window.addEventListener('resize', resize, {passive:true});
+      resize();
+
+      function draw(){
+        ctx.fillStyle = 'rgba(0,0,0,0.05)';
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.fillStyle = '#00ff88';
+        ctx.font = fontSize + 'px monospace';
+        for(let i=0;i<drops.length;i++){
+          const t = letters[(Math.random()*letters.length)|0];
+          ctx.fillText(t, i*fontSize, drops[i]*fontSize);
+          if(drops[i]*fontSize > canvas.height && Math.random() > 0.975){ drops[i]=0; }
+          drops[i]++;
+        }
+        requestAnimationFrame(draw);
+      }
+      requestAnimationFrame(draw);
+      document.getElementById('y').textContent = new Date().getFullYear();
+    })();
+  </script>
 </body>
 </html>
