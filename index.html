@@ -45,9 +45,9 @@
     <h1>Mr. K — Red Team Operator</h1>
     <p>OSCP+ student | Grey Hat | Kydras Offensive Suite Developer</p>
     <p>
-        <a href="https://github.com/Kydras8/Kydras-OSINT">OSINT Toolkit</a> | 
-        <a href="https://github.com/Kydras8/Kydras-Playbooks">Playbooks</a> | 
-        <a href="https://github.com/Kydras8/Kydras-Lite">Lite Toolkit</a> | 
+        <a href="https://github.com/Kydras8/Kydras-OSINT">OSINT Toolkit</a> |
+        <a href="https://github.com/Kydras8/Kydras-Playbooks">Playbooks</a> |
+        <a href="https://github.com/Kydras8/Kydras-Lite">Lite Toolkit</a> |
         <a href="https://github.com/Kydras8/Kydras-Payloads">Payload Arsenal</a>
     </p>
     <p>Email: 8bitlate@gmail.com</p>
@@ -63,34 +63,39 @@
     var fontSize = 14;
     var columns = c.width / fontSize;
     var drops = [];
-    for(var x = 0; x < columns; x++)
-        drops[x] = 1;
-    function draw(){
+    for (var x = 0; x < columns; x++) drops[x] = 1;
+
+    function draw() {
         ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
         ctx.fillRect(0, 0, c.width, c.height);
         ctx.fillStyle = "#00ff88";
         ctx.font = fontSize + "px monospace";
-        for(var i = 0; i < drops.length; i++){
-            var text = letters[Math.floor(Math.random()*letters.length)];
-            ctx.fillText(text, i*fontSize, drops[i]*fontSize);
-            if(drops[i]*fontSize > c.height && Math.random() > 0.975)
+        for (var i = 0; i < drops.length; i++) {
+            var text = letters[Math.floor(Math.random() * letters.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+            if (drops[i] * fontSize > c.height && Math.random() > 0.975) {
                 drops[i] = 0;
+            }
             drops[i]++;
         }
     }
     setInterval(draw, 35);
 </script>
-<div class="badge-base LI-profile-badge"
-     data-locale="en_US"
-     data-size="medium"
-     data-theme="dark"
-     data-type="VERTICAL"
-     data-vanity="kyle-rasmussen-950065301"
-     data-version="v1">
-  <a class="badge-base__link LI-simple-link"
-     href="https://www.linkedin.com/in/kyle-rasmussen-950065301?trk=profile-badge">
-     Kyle Rasmussen
-  </a>
+
+<!-- LinkedIn badge -->
+<div style="display:flex;justify-content:center;margin-top:40px;z-index:2;position:relative;">
+  <div class="badge-base LI-profile-badge"
+       data-locale="en_US"
+       data-size="medium"
+       data-theme="dark"
+       data-type="VERTICAL"
+       data-vanity="kyle-rasmussen-950065301"
+       data-version="v1">
+    <a class="badge-base__link LI-simple-link"
+       href="https://www.linkedin.com/in/kyle-rasmussen-950065301?trk=profile-badge">
+       Kyle Rasmussen
+    </a>
+  </div>
 </div>
 
 <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
