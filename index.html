@@ -14,7 +14,7 @@
 
   <style>
     :root{
-      --bg:#0b0f0e; --fg:#b9ffe5; --neon:#00ff88; --link:#00e5ff; --muted:#88d6bd;
+      --bg:#0a0f0e; --fg:#c8ffe9; --neon:#00ff88; --link:#00e5ff; --muted:#9de7cf;
       --card:rgba(0,0,0,.55); --border:rgba(0,255,136,.35);
     }
     *{box-sizing:border-box}
@@ -24,7 +24,12 @@
 
     /* Matrix canvas backdrop */
     #matrix{position:fixed;inset:0;z-index:0}
-    .scrim{position:fixed;inset:0;background:radial-gradient(1200px 600px at 50% 0%, rgba(0,0,0,.0), rgba(0,0,0,.8));z-index:1;pointer-events:none}
+    .scrim{position:fixed;inset:0;background:radial-gradient(1200px 600px at 50% 0%, rgba(0,0,0,.0), rgba(0,0,0,.85));z-index:1;pointer-events:none}
+
+    /* Animations */
+    @keyframes heroFade { from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:none} }
+    @keyframes glowPulse { 0%,100%{box-shadow:0 0 0 0 rgba(0,255,136,.0)} 50%{box-shadow:0 0 22px 0 rgba(0,255,136,.35)} }
+    @keyframes softGlow { 0%,100%{text-shadow:0 0 14px rgba(0,255,136,.18)} 50%{text-shadow:0 0 26px rgba(0,255,136,.34)} }
 
     /* Layout */
     .wrap{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:20px}
@@ -35,22 +40,23 @@
     .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.4px}
     .brand img{width:26px;height:26px;border-radius:6px;filter:drop-shadow(0 0 10px rgba(0,255,136,.5))}
     .spacer{flex:1}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:12px;border:1px solid var(--border);background:var(--card);color:var(--fg);box-shadow:0 0 0 0 rgba(0,255,136,.35);transition:transform .15s ease, box-shadow .2s ease}
-    .btn:hover{transform:translateY(-1px);box-shadow:0 0 18px 0 rgba(0,255,136,.25)}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:14px;border:1px solid var(--border);background:var(--card);color:var(--fg);transition:transform .15s ease, box-shadow .2s ease, border-color .2s ease}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 0 18px 0 rgba(0,255,136,.25);border-color:rgba(0,255,136,.55)}
+    .btn.pulse{animation:glowPulse 2.8s ease-in-out infinite}
 
     /* Hero */
-    .hero{display:grid;grid-template-columns:1fr;gap:14px;padding:48px 0 16px}
-    .hero h1{margin:0;font-size:42px;line-height:1.05;text-shadow:0 0 18px rgba(0,255,136,.25)}
+    .hero{display:grid;grid-template-columns:1fr;gap:14px;padding:56px 0 18px}
+    .hero h1{margin:0;font-size:46px;line-height:1.05;color:#eafff7;animation:softGlow 4s ease-in-out infinite}
     .hero p{margin:6px 0 16px;color:var(--muted)}
-    .cta{display:flex;flex-wrap:wrap;gap:10px}
+    .hero .cta{display:flex;flex-wrap:wrap;gap:10px;animation:heroFade .6s ease 0s both}
 
     /* Sections */
-    section{margin:34px 0}
+    section{margin:36px 0}
     .section-title{font-size:22px;margin:0 0 10px;text-shadow:0 0 12px rgba(0,255,136,.15)}
 
     /* Cards */
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-    .card{border:1px solid var(--border);background:var(--card);border-radius:16px;padding:16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+    .card{border:1px solid var(--border);background:var(--card);border-radius:16px;padding:16px;animation:heroFade .6s ease .05s both}
     .card h3{margin:0 0 6px;font-size:18px}
     .card p{margin:0 0 10px;color:var(--muted)}
 
@@ -76,7 +82,7 @@
         <span>Kydras Systems Inc.</span>
       </div>
       <div class="spacer"></div>
-      <a class="btn" href="https://bit.ly/KydrasSystems" target="_blank" rel="noopener">GoFundMe</a>
+      <a class="btn pulse" href="https://bit.ly/KydrasSystems" target="_blank" rel="noopener">GoFundMe</a>
       <a class="btn" href="https://kydras.gumroad.com/" target="_blank" rel="noopener">Gumroad</a>
       <a class="btn" href="https://buymeacoffee.com/Kydras" target="_blank" rel="noopener">Buy Me a Coffee</a>
       <a class="btn" href="https://github.com/Kydras8" target="_blank" rel="noopener">GitHub</a>
@@ -94,7 +100,7 @@
         <h1>Mr. K — Red Team Operator</h1>
         <p>OSCP+ student • Grey Hat • Kydras Offensive Suite developer. Building accessible cybersecurity tools at <strong>Kydras Systems Inc.</strong></p>
         <div class="cta">
-          <a class="btn" href="https://bit.ly/KydrasSystems" target="_blank" rel="noopener">Support the Launch</a>
+          <a class="btn pulse" href="https://bit.ly/KydrasSystems" target="_blank" rel="noopener">Support the Launch</a>
           <a class="btn" href="#projects">View Projects</a>
           <a class="btn" href="#store">Visit Store</a>
         </div>
@@ -208,7 +214,7 @@
   <!-- LinkedIn badge script (must appear once per page) -->
   <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
 
-  <!-- Matrix rain background (rAF + resize-aware) -->
+  <!-- Matrix rain background (rAF + resize-aware) + hero fade timing -->
   <script>
     (function(){
       const canvas = document.getElementById('matrix');
