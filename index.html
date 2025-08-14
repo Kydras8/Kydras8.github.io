@@ -247,5 +247,21 @@
       document.getElementById('y').textContent = new Date().getFullYear();
     })();
   </script>
+<!-- === Sticky Quick-Buy Bar (Gumroad) === -->
+<style>
+  .kx-sticky-buy{position:fixed;left:0;right:0;bottom:12px;z-index:9999;display:flex;justify-content:center}
+  .kx-sticky-inner{display:flex;gap:.5rem;flex-wrap:wrap;background:rgba(0,0,0,.55);backdrop-filter:blur(10px);border:1px solid rgba(0,255,255,.3);border-radius:16px;padding:.5rem .6rem;box-shadow:0 0 18px rgba(0,255,255,.2), inset 0 0 12px rgba(0,255,255,.08)}
+  .kx-sticky-inner a{pointer-events:auto}
+  @media (min-width:900px){ .kx-sticky-inner{padding:.6rem .8rem} }
+  @media (max-width:640px){ .kx-sticky-inner{max-width:min(96%,720px)} }
+</style>
+<div class="kx-sticky-buy" id="quickbuy">
+  <div class="kx-sticky-inner">
+    <a class="btn-follow" href="https://kydras.gumroad.com/l/dlbzn?utm_source=site%FREE%utm_medium=sticky_footer%FREE%utm_campaign=launch%FREE%utm_content=free">Try Free</a>
+    <a class="btn-buy"    href="https://kydras.gumroad.com/l/emutbc?utm_source=site%LITE%utm_medium=sticky_footer%LITE%utm_campaign=launch%LITE%utm_content=lite" target="_blank" rel="noopener">Buy Lite</a>
+    <a class="btn-buy"    href="https://kydras.gumroad.com/l/kvqzm?utm_source=site%PRO%utm_medium=sticky_footer%PRO%utm_campaign=launch%PRO%utm_content=pro"  target="_blank" rel="noopener">Go Pro</a>
+  </div>
+</div>
+<!-- === /Sticky Quick-Buy Bar === -->
 </body>
 </html>
