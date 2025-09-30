@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Kydras8/kydras8.github.io/main/assets/kydras-banner.png?v=1"
+       alt="Kydras Systems Inc. — Nothing is Off Limits" width="100%">
+</p>
+
 # 🐍 Mr. K — Red Teamer by Day, Grey Hat by Night
 
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Kydras8&show_icons=true&theme=dark)
