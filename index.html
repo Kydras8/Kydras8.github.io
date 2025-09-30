@@ -1,213 +1,365 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mr. K — Red Team Operator | Kydras Systems</title>
-  <meta name="description" content="Mr. K (Kydras) — Red Team operator & OSCP+ student. Building Kydras Offensive Suite, OSINT tooling, playbooks, and payloads." />
-  <meta name="robots" content="index,follow" />
-
-  <!-- Favicon (inline SVG) -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='24' fill='%23000'/%3E%3Cpath d='M28 88L64 24l36 64H86l-8-14H50l-8 14H28zM56 60h16l-8-15-8 15z' fill='%23fff'/%3E%3C/svg%3E" />
-
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Mr. K — Red Team Operator" />
-  <meta property="og:description" content="Kydras Offensive Suite · OSINT · Playbooks · Payloads" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://kydras8.github.io/" />
-  <meta name="twitter:card" content="summary_large_image" />
-
+  <title>Kydras Systems Inc. — App Showcase</title>
+  <meta name="description" content="Kydras Systems Inc. — AI, Security, and Creative tools by Mr. K." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0b0b0c; --card:#121215; --text:#e8e8ea; --muted:#a2a2a7;
-      --accent:#7df9ff; --accent2:#70ffaf; --border:#1f1f24;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --bg: #0b0f14;
+      --bg2:#0e131a;
+      --card:#121821;
+      --ink:#e7edf5;
+      --ink-dim:#9fb0c6;
+      --brand:#e3b341; /* Kydras gold */
+      --muted:#1b2430;
+      --ring:rgba(227,179,65,0.35);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; color:var(--text);
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+      color:var(--ink);
       background:
-        radial-gradient(1200px 800px at 10% -10%, rgba(125,249,255,.08), transparent 50%),
-        radial-gradient(1000px 600px at 110% 10%, rgba(112,255,175,.08), transparent 50%),
-        var(--bg);
-      font:16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+        radial-gradient(1200px 800px at 80% -10%, #1d2430 0%, transparent 60%),
+        radial-gradient(1000px 600px at -10% 10%, #131b26 0%, transparent 55%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      background-attachment: fixed;
     }
-    a{color:inherit;text-decoration:none}
-    a:focus-visible, button:focus-visible {outline:2px solid var(--accent); outline-offset:2px; border-radius:10px}
-
-    .skip{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
-    .skip:focus{left:16px;top:16px;width:auto;height:auto;background:#000;padding:8px 12px;border-radius:10px;z-index:10000}
-
-    .wrap{max-width:1024px;margin-inline:auto;padding:28px}
-    header{display:flex;gap:16px;align-items:center;justify-content:space-between}
-    .brand{display:flex;gap:14px;align-items:center}
-    .logo{width:40px;height:40px;border-radius:12px;background:#000;display:grid;place-items:center;border:1px solid var(--border); box-shadow:var(--shadow)}
-    .logo svg{width:24px;height:24px}
-    .nav a{opacity:.9;padding:6px 10px;border-radius:10px}
-    .nav a:hover{background:rgba(255,255,255,.05)}
-
-    .hero{padding:48px 0 24px;display:grid;gap:18px}
-    h1{font-size:clamp(28px,4vw,46px);margin:0;letter-spacing:.2px}
-    .sub{color:var(--muted);font-size:clamp(15px,2.2vw,18px)}
-    .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
-    .btn{
-      display:inline-flex;align-items:center;gap:10px;padding:11px 14px;
-      border-radius:12px;border:1px solid var(--border);
-      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
-      backdrop-filter:saturate(120%); box-shadow:var(--shadow); transition:transform .15s ease, border-color .15s ease;
+    .wrap{max-width:1200px;margin:0 auto;padding:32px 20px 64px}
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px
     }
-    .btn:hover{transform:translateY(-1px);border-color:#2a2a30}
-    .tag{font-size:12px;color:var(--muted);padding:2px 8px;border-radius:999px;border:1px solid var(--border)}
+    .brand{
+      display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink)
+    }
+    .brand .logo{
+      width:40px;height:40px;border-radius:10px;
+      background: radial-gradient(circle at 30% 30%, #ffe8a6 0%, #e3b341 40%, #896c1d 100%);
+      box-shadow: 0 0 0 2px rgba(227,179,65,.25), 0 8px 30px rgba(0,0,0,.45);
+    }
+    .brand h1{font-size:18px;margin:0;font-weight:800;letter-spacing:.2px}
+    .brand small{display:block;color:var(--ink-dim);font-weight:600}
 
-    .divider{height:1px;background:linear-gradient(90deg,transparent,#202028,transparent);margin:22px 0}
+    .nav{
+      display:flex;flex-wrap:wrap;gap:10px
+    }
+    .nav a{
+      text-decoration:none;color:var(--ink);
+      background:transparent;border:1px solid #243044;border-radius:10px;
+      padding:8px 12px;font-weight:600;opacity:.9
+    }
+    .nav a:hover{border-color:#2f3d55;opacity:1}
 
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .hero{
+      margin-top:14px;margin-bottom:18px;padding:22px 18px;border:1px solid #273349;border-radius:18px;
+      background: linear-gradient(180deg,#121826 0%, #0e141d 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 10px 40px rgba(0,0,0,.35)
+    }
+    .hero h2{margin:0 0 8px 0;font-size:26px}
+    .hero p{margin:0;color:var(--ink-dim)}
+
+    .controls{
+      display:flex;flex-wrap:wrap;gap:12px;margin:18px 0 8px 0
+    }
+    .search{
+      flex:1;min-width:240px;position:relative
+    }
+    .search input{
+      width:100%;padding:12px 14px;border-radius:12px;border:1px solid #2a364a;background:#0e141d;color:var(--ink);
+      outline:none
+    }
+    .search input:focus{box-shadow:0 0 0 4px var(--ring);border-color:#394b66}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{
+      padding:8px 10px;border-radius:10px;border:1px solid #2a364a;color:var(--ink-dim);
+      cursor:pointer;user-select:none
+    }
+    .tag[data-active="true"]{border-color:var(--brand);color:var(--brand);background:rgba(227,179,65,0.06)}
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(1,minmax(0,1fr));
+      gap:16px;margin-top:14px
+    }
+    @media (min-width:700px){ .grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media (min-width:1000px){ .grid{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
+
     .card{
-      grid-column:span 12;
-      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
-      border:1px solid var(--border); border-radius:16px; padding:18px; box-shadow:var(--shadow)
+      border:1px solid #243044;background:var(--card);border-radius:18px;padding:16px;
+      display:flex;flex-direction:column;gap:10px;
+      transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
     }
-    @media(min-width:640px){.card{grid-column:span 6}}
-    @media(min-width:1024px){.card{grid-column:span 4}}
-    .card h3{margin:0 0 6px;font-size:18px}
-    .card p{margin:0;color:var(--muted)}
-    .meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
-    .pill{font-size:12px;border:1px solid var(--border);padding:4px 8px;border-radius:999px;color:var(--muted)}
-
-    footer{margin:30px 0 10px;color:var(--muted);font-size:14px}
-    .legal{font-size:12px;opacity:.85}
-
-    @media (prefers-reduced-motion: reduce){
-      .btn{transition:none}
-      .btn:hover{transform:none}
+    .card:hover{transform:translateY(-2px);border-color:#345078;box-shadow:0 12px 32px rgba(0,0,0,.35)}
+    .card .top{display:flex;gap:12px;align-items:center}
+    .icon{
+      width:42px;height:42px;border-radius:12px;flex:0 0 auto;
+      background: radial-gradient(circle at 30% 30%, #ffe8a6 0%, #e3b341 40%, #896c1d 100%);
+      box-shadow: 0 0 0 2px rgba(227,179,65,.2)
     }
+    .title{font-weight:800;font-size:16px;margin:0;color:#f2f6fb}
+    .byline{margin:0;color:var(--ink-dim);font-size:12px}
+    .desc{margin:0;color:#c9d6e6;line-height:1.5}
+    .meta{color:var(--ink-dim);font-size:12px}
+    .actions{display:flex;gap:10px;margin-top:auto;flex-wrap:wrap}
+    .btn{
+      text-decoration:none;border-radius:12px;padding:10px 12px;font-weight:700;border:1px solid #34445d;display:inline-block
+    }
+    .btn.primary{background:var(--brand);color:#0b0f14;border:1px solid #b38d2c}
+    .btn.ghost{color:#d6e2f2}
+    footer{margin-top:36px;color:var(--ink-dim);font-size:13px;text-align:center}
+    footer a{color:var(--ink-dim)}
   </style>
 </head>
 <body>
-  <a class="skip" href="#content">Skip to content</a>
   <div class="wrap">
     <header>
-      <div class="brand">
-        <div class="logo" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 18 12 4l8 14h-3l-2-3H9l-2 3H4Zm7-7h2l-1-2-1 2Z" fill="#fff"/></svg>
-        </div>
+      <a class="brand" href="/">
+        <div class="logo" aria-hidden="true"></div>
         <div>
-          <strong>Mr. K</strong>
-          <div class="sub">Red Team Operator • OSCP+ student • Kydras Offensive Suite</div>
+          <h1>Kydras Systems Inc.</h1>
+          <small>Mr. K — Red Team Operator</small>
         </div>
-      </div>
-      <nav class="nav" aria-label="Primary">
-        <a href="#projects">Projects</a>
-        <a href="#links">Links</a>
-        <a href="#contact">Contact</a>
+      </a>
+      <nav class="nav">
+        <a href="https://kydras.gumroad.com" target="_blank" rel="noopener">Gumroad</a>
+        <a href="https://github.com/Kydras8" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://buymeacoffee.com/kydras" target="_blank" rel="noopener">BuyMeACoffee</a>
       </nav>
     </header>
 
-    <main id="content">
-      <section class="hero" id="top" aria-labelledby="hero-title">
-        <h1 id="hero-title">Operator-first tooling for <em>real-world</em> ops.</h1>
-        <p class="sub">Mobile-ready recon, payloads, and playbooks. Built and field-tested by Mr. K (Kydras).</p>
-        <div class="cta" role="group" aria-label="Quick actions">
-          <a class="btn" href="https://github.com/Kydras8/Kydras-OSINT" target="_blank" rel="noopener">
-            <span>OSINT Toolkit</span> <span class="tag">repo</span>
-          </a>
-          <a class="btn" href="https://github.com/Kydras8/Kydras-Playbooks" target="_blank" rel="noopener">
-            <span>Red Team Playbooks</span> <span class="tag">repo</span>
-          </a>
-          <a class="btn" href="https://github.com/Kydras8/KydrasMint" target="_blank" rel="noopener">
-            <span>Kydras Mint</span> <span class="tag">dapp</span>
-          </a>
-          <a class="btn" href="https://github.com/Kydras8/Kydras-eBook-Studio" target="_blank" rel="noopener">
-            <span>eBook Studio</span> <span class="tag">app</span>
-          </a>
+    <section class="hero">
+      <h2>Build • Secure • Create — The Kydras App Suite</h2>
+      <p>AI, security, music, docs, finance, intel. Browse everything below and jump in.</p>
+
+      <div class="controls">
+        <div class="search">
+          <input id="q" type="search" placeholder="Search apps (e.g., OSINT, music, marketing, PDF, trading)…" />
         </div>
-      </section>
+        <div class="tags" id="tags">
+          <div class="tag" data-tag="security">Security</div>
+          <div class="tag" data-tag="osint">OSINT</div>
+          <div class="tag" data-tag="music">Music</div>
+          <div class="tag" data-tag="marketing">Marketing</div>
+          <div class="tag" data-tag="docs">Docs/PDF</div>
+          <div class="tag" data-tag="finance">Finance</div>
+          <div class="tag" data-tag="trading">Trading</div>
+        </div>
+      </div>
+    </section>
 
-      <div class="divider" role="presentation"></div>
-
-      <section id="projects" class="grid" aria-label="Featured projects">
-        <article class="card">
-          <h3>⚡ Kydras-OSINT</h3>
-          <p>Lightweight recon toolkit. Quick pivots, mobile-friendly. Python + Shell.</p>
-          <div class="meta">
-            <span class="pill">Python</span><span class="pill">Shell</span>
-            <a class="pill" href="https://github.com/Kydras8/Kydras-OSINT" target="_blank" rel="noopener">View repo →</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <h3>📒 Kydras-Playbooks</h3>
-          <p>Operator playbooks & checklists for repeatable attack chains.</p>
-          <div class="meta">
-            <span class="pill">Cheatsheets</span><span class="pill">TTPs</span>
-            <a class="pill" href="https://github.com/Kydras8/Kydras-Playbooks" target="_blank" rel="noopener">View repo →</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <h3>🧨 Payload Arsenal</h3>
-          <p>Custom payloads & droppers. <em>(Public preview soon.)</em></p>
-          <div class="meta"><span class="pill">Coming soon</span></div>
-        </article>
-
-        <article class="card">
-          <h3>🎛️ Kydras Mint</h3>
-          <p>Music NFT tooling — automated mint → post → email flow.</p>
-          <div class="meta">
-            <span class="pill">TS/Node</span>
-            <a class="pill" href="https://github.com/Kydras8/KydrasMint" target="_blank" rel="noopener">View repo →</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <h3>📚 eBook Studio</h3>
-          <p>Convert .py/.md/.txt/.pdf → .epub/.mobi/.pdf with custom templates.</p>
-          <div class="meta">
-            <span class="pill">AppImage</span>
-            <a class="pill" href="https://github.com/Kydras8/Kydras-eBook-Studio" target="_blank" rel="noopener">View repo →</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <h3>🛰️ Field Ops</h3>
-          <p>Mobile-first workflows for on-the-go operators. <em>(Docs WIP.)</em></p>
-          <div class="meta"><span class="pill">Docs</span></div>
-        </article>
-      </section>
-
-      <div class="divider" role="presentation"></div>
-
-      <section id="links" class="grid" aria-label="Links & profiles">
-        <article class="card">
-          <h3>Links</h3>
-          <p>
-            <a href="https://github.com/Kydras8" target="_blank" rel="noopener">GitHub</a> ·
-            <a href="https://kydras.gumroad.com/" target="_blank" rel="noopener">Gumroad</a> ·
-            <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
-          </p>
-          <p class="sub">Brand: Kydras Systems Inc. • Location: WY, USA</p>
-        </article>
-
-        <article class="card" id="contact">
-          <h3>Contact</h3>
-          <p>Email: <a href="mailto:8bitlate@gmail.com">8bitlate@gmail.com</a></p>
-          <p class="legal">For educational &amp; authorized testing only. You are responsible for your use.</p>
-        </article>
-      </section>
-    </main>
+    <section id="grid" class="grid"></section>
 
     <footer>
-      <div>© <span id="y"></span> Kydras Systems • Last updated: <time id="upd"></time></div>
+      © Kydras Systems Inc. • <a href="mailto:8bitlate@gmail.com">8bitlate@gmail.com</a>
     </footer>
   </div>
 
   <script>
-    // Footer year + last-updated stamp
-    const d=new Date();
-    document.getElementById('y').textContent=d.getFullYear();
-    document.getElementById('upd').textContent=d.toLocaleDateString(undefined,{year:'numeric',month:'short',day:'2-digit'});
+    // === Data: your apps (edit links as needed) ===
+    const APPS = [
+      {
+        name: "Kydras Lab",
+        tags: ["ai","builder"],
+        created: "22 days ago",
+        by: "kylerasmussen17771@gmail.com",
+        desc: "Build any app you can imagine with AI. Describe it; get screens, data models, and features.",
+        open: "#", more: "#"
+      },
+      {
+        name: "Eyes of Kydras",
+        tags: ["security","network","osint"],
+        created: "5 days ago",
+        by: "kylerasmussen17771@gmail.com",
+        desc: "Real-time packet analysis, IP intel, threat detection, reporting — see your network like never before.",
+        open: "#", more: "#"
+      },
+      {
+        name: "Kydras Music Studio",
+        tags: ["music","creative"],
+        created: "a month ago",
+        by: "kylerasmussen17771@gmail.com",
+        desc: "AI-powered music creation: lyrics, melody/arrangement suggestions, and a personal library.",
+        open: "#", more: "#"
+      },
+      {
+        name: "Kydras Intelligence",
+        tags: ["osint","intel","security"],
+        created: "a month ago",
+        by: "kylerasmussen17771@gmail.com",
+        desc: "Unified OSINT suite for research, evidence management, and intelligence reporting.",
+        open: "#", more: "#"
+      },
+      {
+        name: "Kydras Total Marketing",
+        tags: ["marketing","growth","agent"],
+        created: "a month ago",
+        by: "kylerasmussen17771@gmail.com",
+        desc: "Autonomous growth engine: analyzes, plans, and proposes full marketing initiatives to approve.",
+        open: "#", more: "#"
+      },
+      {
+        name: "Kydras Academy",
+        tags: ["security","education"],
+        created: "a month ago",
+        by: "kylerasmussen17771@gmail.com",
+        desc: "Hands-on cybersecurity challenges and structured paths from beginner to expert.",
+        open: "#", more: "#"
+      },
+      {
+        name: "Kydras Mint",
+        tags: ["marketing","distribution"],
+        created: "2 months ago",
+        by: "kylerasmussen17771@gmail.com",
+        desc: "Share any URL across socials & email with one click. Schedule and analyze performance.",
+        open: "#", more: "#"
+      },
+      {
+        name: "Kydras Financial",
+        tags: ["finance","business"],
+        created: "a month ago",
+        by: "kylerasmussen17771@gmail.com",
+        desc: "Invoices, expenses, cash flow, clean insights with a friendly UI.",
+        open: "#", more: "#"
+      },
+      {
+        name: "Kydras Builder",
+        tags: ["builder","web","marketing"],
+        created: "a month ago",
+        by: "kylerasmussen17771@gmail.com",
+        desc: "Generate professional, SEO-optimized sites in minutes.",
+        open: "#", more: "#"
+      },
+      {
+        name: "Kydras CyberMind",
+        tags: ["security","assistant","osint"],
+        created: "a month ago",
+        by: "kylerasmussen17771@gmail.com",
+        desc: "AI cybersecurity assistant: pentest, OSINT, DFIR, TI guidance and recipes.",
+        open: "#", more: "#"
+      },
+      {
+        name: "Kydras PDF",
+        tags: ["docs","pdf"],
+        created: "a month ago",
+        by: "kylerasmussen17771@gmail.com",
+        desc: "PDFMaster AI — edit, organize, collaborate, transform with AI.",
+        open: "#", more: "#"
+      },
+      {
+        name: "Kydras Sentinel",
+        tags: ["security","compliance","risk"],
+        created: "a month ago",
+        by: "kylerasmussen17771@gmail.com",
+        desc: "Vulns, incidents, compliance, training, skills, risk — one platform.",
+        open: "#", more: "#"
+      },
+      {
+        name: "Kydras Oracle",
+        tags: ["creative","assistant"],
+        created: "22 days ago",
+        by: "kylerasmussen17771@gmail.com",
+        desc: "Aura Oracle: personalized guidance on love, career, finances, and life decisions.",
+        open: "#", more: "#"
+      },
+      {
+        name: "Kydras Trading Hub",
+        tags: ["trading","finance"],
+        created: "5 days ago",
+        by: "kylerasmussen17771@gmail.com",
+        desc: "Upload charts → AI insights, patterns, entry/TP/SL ideas.",
+        open: "#", more: "#"
+      },
+      {
+        name: "Kydras Echo",
+        tags: ["docs","audio","productivity"],
+        created: "a month ago",
+        by: "kylerasmussen17771@gmail.com",
+        desc: "Transcribe, paraphrase, summarize, and generate content from audio/video.",
+        open: "#", more: "#"
+      },
+      {
+        name: "Kydras e-Book Studio",
+        tags: ["docs","creative"],
+        created: "a month ago",
+        by: "kylerasmussen17771@gmail.com",
+        desc: "Turn text into polished e-books with templates, covers, and clean formatting.",
+        open: "#", more: "#"
+      },
+      {
+        name: "Kydras Content Creator",
+        tags: ["marketing","content"],
+        created: "5 days ago",
+        by: "kylerasmussen17771@gmail.com",
+        desc: "Generate high-quality content for blogs & social in seconds.",
+        open: "#", more: "#"
+      },
+    ];
+
+    function el(tag, attrs={}, ...children){
+      const n = document.createElement(tag);
+      Object.entries(attrs).forEach(([k,v])=>{
+        if(k==="class") n.className=v;
+        else if(k==="dataset") Object.assign(n.dataset,v);
+        else if(k.startsWith("on") && typeof v==="function") n.addEventListener(k.slice(2), v);
+        else n.setAttribute(k, v);
+      });
+      for(const c of children){
+        if(c==null) continue;
+        if(typeof c==="string") n.appendChild(document.createTextNode(c));
+        else n.appendChild(c);
+      }
+      return n;
+    }
+
+    function card(app){
+      return el("article", {class:"card", dataset:{tags: app.tags.join(" ")}},
+        el("div", {class:"top"},
+          el("div", {class:"icon", "aria-hidden":"true"}),
+          el("div", {},
+            el("h3", {class:"title"}, app.name),
+            el("p", {class:"byline"}, `By ${app.by} • ${app.created}`)
+          )
+        ),
+        el("p", {class:"desc"}, app.desc),
+        el("div", {class:"meta"}, `Tags: ${app.tags.join(", ")}`),
+        el("div", {class:"actions"},
+          el("a", {href: app.open||"#", class:"btn primary", target:"_blank", rel:"noopener"}, "Open"),
+          el("a", {href: app.more||"#", class:"btn ghost", target:"_blank", rel:"noopener"}, "Learn more")
+        )
+      );
+    }
+
+    const grid = document.getElementById("grid");
+    const q = document.getElementById("q");
+    const tags = document.getElementById("tags");
+
+    function render(list){ grid.replaceChildren(...list.map(card)); }
+    render(APPS);
+
+    function applyFilter(){
+      const needle = (q.value || "").toLowerCase().trim();
+      const activeTags = [...tags.querySelectorAll(".tag[data-active='true']")].map(t=>t.dataset.tag);
+      const out = APPS.filter(a=>{
+        const inText = [a.name, a.desc, a.by, a.created, ...(a.tags||[])].join(" ").toLowerCase();
+        const passText = !needle || inText.includes(needle);
+        const passTags = activeTags.length===0 || activeTags.every(t => (a.tags||[]).includes(t));
+        return passText && passTags;
+      });
+      render(out);
+    }
+
+    q.addEventListener("input", applyFilter);
+    tags.addEventListener("click", (e)=>{
+      const t = e.target.closest(".tag"); if(!t) return;
+      t.dataset.active = t.dataset.active === "true" ? "false" : "true";
+      applyFilter();
+    });
   </script>
 </body>
 </html>
