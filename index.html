@@ -29,11 +29,8 @@
     #kydras-bg-hacker{
       position:fixed; inset:0; z-index:-1; pointer-events:none;
       background:
-        /* scanlines */
         linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px) 0 0/100% 3px,
-        /* vertical interlace hint */
         linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px) 0 0/3px 100%,
-        /* soft blooms */
         radial-gradient(1200px 800px at 80% -10%, #1a2332 0%, transparent 60%),
         radial-gradient(1000px 600px at -10% 10%, #121a26 0%, transparent 55%),
         linear-gradient(180deg,var(--bg),var(--bg2));
@@ -64,13 +61,30 @@
     }
     .nav a:hover{border-color:#2f3d55;opacity:1}
 
+    /* HERO with banner background */
     .hero{
-      margin-top:14px;margin-bottom:18px;padding:22px 18px;border:1px solid #273349;border-radius:18px;
-      background: linear-gradient(180deg,#121826 0%, #0e141d 100%);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 10px 40px rgba(0,0,0,.35)
+      position:relative;
+      min-height:260px;
+      margin-top:14px;margin-bottom:18px;
+      padding:22px 18px;
+      border:1px solid #273349;border-radius:18px;
+      background:
+        linear-gradient(180deg,#0e141d88,#0b101688),                 /* dark overlay */
+        url("assets/kydras-banner.png?v=1") center/cover no-repeat;  /* your banner */
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), 0 10px 40px rgba(0,0,0,.35);
+      display:flex; flex-direction:column; justify-content:flex-end; align-items:flex-start;
     }
-    .hero h2{margin:0 0 8px 0;font-size:26px}
-    .hero p{margin:0;color:var(--dim)}
+    /* If you prefer no cropping on ultra-narrow screens, swap cover→contain and keep a solid bg */
+    @media (max-width:520px){
+      .hero{background:
+        linear-gradient(180deg,#0e141d88,#0b101688),
+        url("assets/kydras-banner.png?v=1") center/contain no-repeat,
+        linear-gradient(180deg,#121826 0%, #0e141d 100%);
+      }
+    }
+
+    .hero h2{margin:0 0 8px 0;font-size:26px;text-shadow:0 6px 24px rgba(0,0,0,.85)}
+    .hero p{margin:0;color:var(--dim);text-shadow:0 6px 24px rgba(0,0,0,.85)}
 
     .controls{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0 8px 0}
     .search{flex:1;min-width:240px;position:relative}
@@ -166,7 +180,7 @@
     <section id="grid" class="grid"></section>
 
     <footer>
-      © Kydras Systems Inc. • <a href="mailto:8bitlate@gmail.com">8bitlate@gmail.com</a>
+      © Kydras Systems Inc. • <a href="mailto:kyle@kydras-systems-inc.com">kyle@kydras-systems-inc.com</a>
     </footer>
   </div>
 
@@ -271,4 +285,3 @@
   </script>
 </body>
 </html>
-
